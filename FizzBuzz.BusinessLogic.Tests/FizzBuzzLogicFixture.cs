@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using MbUnit.Framework;
-
 using FizzBuzz.Core;
-using FizzBuzz.BusinessLogic;
+using MbUnit.Framework;
 
 namespace FizzBuzz.BusinessLogic.Tests
 {
@@ -40,16 +35,16 @@ namespace FizzBuzz.BusinessLogic.Tests
         [Row(10, "Buzz")]
         [Row(11, "11")]
         [Row(12, "Fizz")]
-        [Row(13, "13")] 
+        [Row(13, "13")]
         [Row(14, "14")]
         [Row(15, "FizzBuzz")]
-        [RowTest]
+        [Test]
         public void CreateTransformer_WhenCalled_ReturnsATransformerWhichAdheresToFizzBuzzBusinessRules(int number, string expected)
         {
             ITransformer transformer = logic.CreateTransformer();
             string resultFromTransformer = transformer.Transform(number);
 
-            Assert.AreEqual(expected, resultFromTransformer);           
+            Assert.AreEqual(expected, resultFromTransformer);
         }
     }
 }

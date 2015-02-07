@@ -1,6 +1,6 @@
 using System;
 using System.Globalization;
-
+using FizzBuzz.Core.Properties;
 using MbUnit.Framework;
 
 // Note: Don't do this. It is complete rubbish. Unless your manager demands 100% Code Coverage ;)

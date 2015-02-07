@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 using MbUnit.Framework;
-using FizzBuzz.Core;
 
 namespace FizzBuzz.Core.Test
 {
@@ -31,10 +28,10 @@ namespace FizzBuzz.Core.Test
         [Row(Int32.MaxValue)]
         [Row(Int32.MinValue)]
         [Row(default(Int32))]
-        [RowTest]
+        [Test]
         public void TestTransform(int number)
         {
-            Assert.AreEqual( Message, transformer.Transform(number) );
+            Assert.AreEqual(Message, transformer.Transform(number));
         }
 
         [Test]

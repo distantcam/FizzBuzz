@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 using MbUnit.Framework;
-
-using FizzBuzz.Core;
 
 namespace FizzBuzz.Core.Test
 {
@@ -25,11 +21,10 @@ namespace FizzBuzz.Core.Test
         [Row(Int32.MinValue)]
         [Row(Int32.MaxValue)]
         [Row(default(Int32))]
-        [RowTest]
-        public void TestTransform( int num )
+        [Test]
+        public void TestTransform(int num)
         {
             Assert.IsEmpty(transformer.Transform(num));
         }
-
     }
 }
