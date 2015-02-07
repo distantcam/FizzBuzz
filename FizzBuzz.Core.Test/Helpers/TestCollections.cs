@@ -1,16 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-
-using MbUnit.Framework;
-
+using NUnit.Framework;
 
 namespace FizzBuzz.Core.Test.Helpers
 {
-    static class TestCollections
+    internal static class TestCollections
     {
-
         // This beauty comes from http://www.4wednesdays.com/Bill/2006/09/17/unit-testing-part-1/
         // There's more too and I added to it to test the IEnumerator<T> separately (for Reset testing)
 
@@ -23,7 +19,6 @@ namespace FizzBuzz.Core.Test.Helpers
 
         public static void TestIEnumerator<T>(IEnumerator<T> enumerator, T[] expected, bool tryReset)
         {
-
             // check that iteration is equivalent to expected
 
             for (int i = 0; i < expected.Length; i++)
@@ -53,7 +48,6 @@ namespace FizzBuzz.Core.Test.Helpers
 
         public static void TestIEnumerator(IEnumerator enumerator, object[] expected, bool tryReset)
         {
-
             // check that iteration is equivalent to expected
 
             for (int i = 0; i < expected.Length; i++)
@@ -71,8 +65,6 @@ namespace FizzBuzz.Core.Test.Helpers
                 enumerator.Reset();
                 TestIEnumerator(enumerator, expected, false);
             }
-
         }
-
     }
 }

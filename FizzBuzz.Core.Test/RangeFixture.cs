@@ -1,14 +1,8 @@
 using System;
-using System.Text;
-using System.Collections.Generic;
-using MbUnit;
-
-using FizzBuzz.Core;
-
-using Rhino.Mocks;
-
-using MbUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace FizzBuzz.Core.Test
 {
@@ -18,13 +12,14 @@ namespace FizzBuzz.Core.Test
     [TestFixture]
     public class RangeFixture
     {
-
-        public RangeFixture() { }
+        public RangeFixture()
+        {
+        }
 
         private MockRepository mocks;
         protected Range range;
 
-        // Use TestInitialize to run code before running each test 
+        // Use TestInitialize to run code before running each test
         [SetUp]
         public void MyTestInitialize()
         {
@@ -32,8 +27,8 @@ namespace FizzBuzz.Core.Test
             mocks = new MockRepository();
         }
 
-
         #region Additional test attributes
+
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -45,7 +40,7 @@ namespace FizzBuzz.Core.Test
         // [ClassCleanup()]
         // public static void MyClassCleanup() { }
         //
-        // Use TestInitialize to run code before running each test 
+        // Use TestInitialize to run code before running each test
         // [TestInitialize()]
         // public void MyTestInitialize() { }
         //
@@ -53,7 +48,8 @@ namespace FizzBuzz.Core.Test
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
-        #endregion
+
+        #endregion Additional test attributes
 
         [Test]
         public void BoundsSetByConstructor()
@@ -94,8 +90,8 @@ namespace FizzBuzz.Core.Test
             object[] oneToOneHundredAsObjects = new object[oneToOneHundred.Length];
             oneToOneHundred.CopyTo(oneToOneHundredAsObjects, 0);
 
-            Helpers.TestCollections.TestIEnumerable(range as IEnumerable, 
-                oneToOneHundredAsObjects, 
+            Helpers.TestCollections.TestIEnumerable(range as IEnumerable,
+                oneToOneHundredAsObjects,
                 false);
         }
 
@@ -108,7 +104,7 @@ namespace FizzBuzz.Core.Test
         [Test]
         public void EachCallsActionAtLeastOnce()
         {
-            ICanDoSomething<Int32> mockActioner = mocks.CreateMock<ICanDoSomething<Int32>>();
+            ICanDoSomething<Int32> mockActioner = mocks.StrictMock<ICanDoSomething<Int32>>();
 
             mockActioner.PerformAction(default(Int32));
             LastCall.IgnoreArguments().Repeat.AtLeastOnce();
@@ -123,7 +119,7 @@ namespace FizzBuzz.Core.Test
         [Test]
         public void EachCallsActionExactlyNTimes()
         {
-            ICanDoSomething<Int32> mockActioner = mocks.CreateMock<ICanDoSomething<Int32>>();
+            ICanDoSomething<Int32> mockActioner = mocks.StrictMock<ICanDoSomething<Int32>>();
             Int32 dummy = 1;
             mockActioner.PerformAction(dummy);
             LastCall.IgnoreArguments().Repeat.Times(100);
@@ -138,7 +134,7 @@ namespace FizzBuzz.Core.Test
         [Test]
         public void EachCallsActionWithCorrectArguments()
         {
-            ICanDoSomething<Int32> mockActioner = mocks.CreateMock<ICanDoSomething<Int32>>();
+            ICanDoSomething<Int32> mockActioner = mocks.StrictMock<ICanDoSomething<Int32>>();
 
             foreach (Int32 i in GetOneToOneHundred())
             {
@@ -155,7 +151,7 @@ namespace FizzBuzz.Core.Test
         [Test]
         public void EachCallsActionInCorrectOrder()
         {
-            ICanDoSomething<Int32> mockActioner = mocks.CreateMock<ICanDoSomething<Int32>>();
+            ICanDoSomething<Int32> mockActioner = mocks.StrictMock<ICanDoSomething<Int32>>();
 
             using (mocks.Ordered())
             {

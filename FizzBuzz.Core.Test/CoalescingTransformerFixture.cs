@@ -1,5 +1,5 @@
 using System;
-using MbUnit.Framework;
+using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace FizzBuzz.Core.Test
@@ -16,10 +16,10 @@ namespace FizzBuzz.Core.Test
         public void SetUp()
         {
             mocks = new MockRepository();
-            mockTransformerWhichReturnsEmptyString = mocks.CreateMock<ITransformer>();
+            mockTransformerWhichReturnsEmptyString = mocks.StrictMock<ITransformer>();
             Expect.Call(mockTransformerWhichReturnsEmptyString.Transform(1)).IgnoreArguments().Return("").Repeat.Any();
 
-            mockTransformerWhichReturnsValue = mocks.CreateMock<ITransformer>();
+            mockTransformerWhichReturnsValue = mocks.StrictMock<ITransformer>();
             Expect.Call(mockTransformerWhichReturnsValue.Transform(1)).IgnoreArguments().Return(DummyValue).Repeat.Any();
 
             mocks.ReplayAll();

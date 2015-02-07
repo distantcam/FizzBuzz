@@ -1,6 +1,5 @@
 using System;
-
-using MbUnit.Framework;
+using NUnit.Framework;
 
 namespace FizzBuzz.Core.Test
 {
@@ -15,12 +14,12 @@ namespace FizzBuzz.Core.Test
             transformer = new NullTransformer();
         }
 
-        [Row(1)]
-        [Row(0)]
-        [Row(-1)]
-        [Row(Int32.MinValue)]
-        [Row(Int32.MaxValue)]
-        [Row(default(Int32))]
+        [TestCase(1)]
+        [TestCase(0)]
+        [TestCase(-1)]
+        [TestCase(Int32.MinValue)]
+        [TestCase(Int32.MaxValue)]
+        [TestCase(default(Int32))]
         [Test]
         public void TestTransform(int num)
         {

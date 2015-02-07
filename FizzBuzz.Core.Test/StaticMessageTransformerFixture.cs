@@ -1,6 +1,5 @@
 using System;
-
-using MbUnit.Framework;
+using NUnit.Framework;
 
 namespace FizzBuzz.Core.Test
 {
@@ -22,12 +21,12 @@ namespace FizzBuzz.Core.Test
             Assert.AreEqual(Message, transformer.Message);
         }
 
-        [Row(1)]
-        [Row(0)]
-        [Row(-1)]
-        [Row(Int32.MaxValue)]
-        [Row(Int32.MinValue)]
-        [Row(default(Int32))]
+        [TestCase(1)]
+        [TestCase(0)]
+        [TestCase(-1)]
+        [TestCase(Int32.MaxValue)]
+        [TestCase(Int32.MinValue)]
+        [TestCase(default(Int32))]
         [Test]
         public void TestTransform(int number)
         {
@@ -35,7 +34,7 @@ namespace FizzBuzz.Core.Test
         }
 
         [Test]
-        [ExpectedArgumentException]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestConstructorWithBadMessage()
         {
             transformer = new StaticMessageTransformer(null);

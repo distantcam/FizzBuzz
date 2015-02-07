@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using MbUnit.Framework;
 
 using FizzBuzz.Core.Helpers;
+using NUnit.Framework;
 
 namespace FizzBuzz.Core.Test
 {
@@ -12,7 +9,7 @@ namespace FizzBuzz.Core.Test
     public class ArgumentsFixture
     {
         [Test]
-        [ExpectedArgumentException]
+        [ExpectedException(typeof(ArgumentException))]
         public void Test_PassedTrue_ThrowsException()
         {
             Arguments.Test(true, "", "");
@@ -56,7 +53,7 @@ namespace FizzBuzz.Core.Test
         }
 
         [Test]
-        [ExpectedArgumentException]
+        [ExpectedException(typeof(ArgumentException))]
         public void NotNull_PassedNull_ThrowsException()
         {
             Arguments.NotNull(null, "");

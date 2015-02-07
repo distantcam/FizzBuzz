@@ -1,17 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using MbUnit.Framework;
-
-using FizzBuzz.Core;
+using NUnit.Framework;
 
 namespace FizzBuzz.Core.Test
 {
     public abstract class AggregatedTransformerFixture
     {
         public abstract AggregatedTransformer GetTransformer(params ITransformer[] children);
-
 
         [Test]
         public void Transform_PassingNoChildren_ReturnsEmptyString()
@@ -20,7 +14,7 @@ namespace FizzBuzz.Core.Test
             AggregatedTransformer transformer = GetTransformer();
             string actualResult = transformer.Transform(dummyNumber);
 
-            Assert.IsEmpty(actualResult);      
+            Assert.IsEmpty(actualResult);
         }
 
         [Test]
@@ -30,7 +24,7 @@ namespace FizzBuzz.Core.Test
             AggregatedTransformer transformer = GetTransformer(null);
             string actualResult = transformer.Transform(dummyNumber);
 
-            Assert.IsEmpty(actualResult);     
+            Assert.IsEmpty(actualResult);
         }
     }
 }

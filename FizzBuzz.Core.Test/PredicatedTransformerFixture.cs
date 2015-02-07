@@ -1,12 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using MbUnit.Framework;
+using NUnit.Framework;
 using Rhino.Mocks;
-
-using FizzBuzz.Core;
-using System.Text.RegularExpressions;
 
 namespace FizzBuzz.Core.Test
 {
@@ -23,17 +17,17 @@ namespace FizzBuzz.Core.Test
         public void SetUp()
         {
             mocks = new MockRepository();
-            mockPassTransformer = mocks.CreateMock<ITransformer>();
-            mockFailTransformer = mocks.CreateMock<ITransformer>();
-            mockPredicateProvider = mocks.CreateMock<ICanTestInts>();
+            mockPassTransformer = mocks.StrictMock<ITransformer>();
+            mockFailTransformer = mocks.StrictMock<ITransformer>();
+            mockPredicateProvider = mocks.StrictMock<ICanTestInts>();
         }
 
         [Test]
-        [ExpectedArgumentException]
+        [ExpectedException(typeof(ArgumentException))]
         public void Constructor_GivenNullPredicate_ThrowsException()
         {
             Predicate<Int32> nullTest = null;
-            
+
             mocks.ReplayAll();
 
             PredicatedTransformer transformer = new PredicatedTransformer(nullTest, mockPassTransformer, mockFailTransformer);
@@ -42,7 +36,7 @@ namespace FizzBuzz.Core.Test
         }
 
         [Test]
-        [ExpectedArgumentException]
+        [ExpectedException(typeof(ArgumentException))]
         public void Constructor_GivenNullPassTransformer_ThrowsException()
         {
             mocks.ReplayAll();
@@ -55,7 +49,7 @@ namespace FizzBuzz.Core.Test
         }
 
         [Test]
-        [ExpectedArgumentException]
+        [ExpectedException(typeof(ArgumentException))]
         public void Constructor_GivenNullFailTransformer_ThrowsException()
         {
             mocks.ReplayAll();
@@ -86,7 +80,7 @@ namespace FizzBuzz.Core.Test
             string actualResult = transformer.Transform(dummyNumber);
 
             Assert.AreEqual(expectedResult, actualResult);
-            
+
             mocks.VerifyAll();
         }
 
@@ -110,11 +104,10 @@ namespace FizzBuzz.Core.Test
 
             mocks.VerifyAll();
         }
-        
+
         public interface ICanTestInts
         {
             bool Test(Int32 number);
         }
-
     }
 }

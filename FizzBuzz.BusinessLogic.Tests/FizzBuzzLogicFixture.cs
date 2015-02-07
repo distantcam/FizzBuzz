@@ -1,6 +1,6 @@
 using System;
 using FizzBuzz.Core;
-using MbUnit.Framework;
+using NUnit.Framework;
 
 namespace FizzBuzz.BusinessLogic.Tests
 {
@@ -23,21 +23,21 @@ namespace FizzBuzz.BusinessLogic.Tests
             Assert.IsNotNull(rangeFromLogicComponent);
         }
 
-        [Row(1, "1")]
-        [Row(2, "2")]
-        [Row(3, "Fizz")]
-        [Row(4, "4")]
-        [Row(5, "Buzz")]
-        [Row(6, "Fizz")]
-        [Row(7, "7")]
-        [Row(8, "8")]
-        [Row(9, "Fizz")]
-        [Row(10, "Buzz")]
-        [Row(11, "11")]
-        [Row(12, "Fizz")]
-        [Row(13, "13")]
-        [Row(14, "14")]
-        [Row(15, "FizzBuzz")]
+        [TestCase(1, "1")]
+        [TestCase(2, "2")]
+        [TestCase(3, "Fizz")]
+        [TestCase(4, "4")]
+        [TestCase(5, "Buzz")]
+        [TestCase(6, "Fizz")]
+        [TestCase(7, "7")]
+        [TestCase(8, "8")]
+        [TestCase(9, "Fizz")]
+        [TestCase(10, "Buzz")]
+        [TestCase(11, "11")]
+        [TestCase(12, "Fizz")]
+        [TestCase(13, "13")]
+        [TestCase(14, "14")]
+        [TestCase(15, "FizzBuzz")]
         [Test]
         public void CreateTransformer_WhenCalled_ReturnsATransformerWhichAdheresToFizzBuzzBusinessRules(int number, string expected)
         {

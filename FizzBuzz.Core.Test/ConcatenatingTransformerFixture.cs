@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using MbUnit.Framework;
-
+using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace FizzBuzz.Core.Test
@@ -22,10 +18,10 @@ namespace FizzBuzz.Core.Test
         {
             mocks = new MockRepository();
 
-            mockTransformerWhichReturnsValueA = mocks.CreateMock<ITransformer>();
+            mockTransformerWhichReturnsValueA = mocks.StrictMock<ITransformer>();
             Expect.Call(mockTransformerWhichReturnsValueA.Transform(1)).IgnoreArguments().Return(DummyValueA).Repeat.Any();
 
-            mockTransformerWhichReturnsValueB = mocks.CreateMock<ITransformer>();
+            mockTransformerWhichReturnsValueB = mocks.StrictMock<ITransformer>();
             Expect.Call(mockTransformerWhichReturnsValueB.Transform(1)).IgnoreArguments().Return(DummyValueB).Repeat.Any();
 
             mocks.ReplayAll();
@@ -55,7 +51,5 @@ namespace FizzBuzz.Core.Test
 
             Assert.AreEqual(expectedResult, actualResult);
         }
-
-
     }
 }

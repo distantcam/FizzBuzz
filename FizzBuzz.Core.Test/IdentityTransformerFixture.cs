@@ -1,11 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using MbUnit.Framework;
-
-using FizzBuzz.Core;
-
+using NUnit.Framework;
 
 namespace FizzBuzz.Core.Test
 {

@@ -1,12 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using MbUnit.Framework;
-using Rhino.Mocks;
-
-using FizzBuzz.Core;
 using System.IO;
+using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace FizzBuzz.Core.Test
 {
@@ -21,12 +16,11 @@ namespace FizzBuzz.Core.Test
             mocks = new MockRepository();
         }
 
-        
         [Test]
-        [ExpectedArgumentException]
+        [ExpectedException(typeof(ArgumentException))]
         public void Constructor_CalledWithNullTextWriter_ThrowsException()
         {
-            ITransformer mockTransformer = mocks.CreateMock<ITransformer>();
+            ITransformer mockTransformer = mocks.StrictMock<ITransformer>();
             mocks.ReplayAll();
 
             TransformingTextWriter writer = new TransformingTextWriter(null, mockTransformer);
@@ -34,12 +28,11 @@ namespace FizzBuzz.Core.Test
             mocks.VerifyAll();
         }
 
-
         [Test]
-        [ExpectedArgumentException]
+        [ExpectedException(typeof(ArgumentException))]
         public void Constructor_CalledWithNullTransformer_ThrowsException()
         {
-            TextWriter mockTextWriter = mocks.CreateMock<TextWriter>();
+            TextWriter mockTextWriter = mocks.StrictMock<TextWriter>();
             mocks.ReplayAll();
 
             TransformingTextWriter writer = new TransformingTextWriter(mockTextWriter, null);
@@ -47,12 +40,11 @@ namespace FizzBuzz.Core.Test
             mocks.VerifyAll();
         }
 
-        
         [Test]
         public void Write_WhenCalled_CallsUnderlyingTransformAndTextWriter()
         {
-            TextWriter mockTextWriter = mocks.CreateMock<TextWriter>();
-            ITransformer mockTransformer = mocks.CreateMock<ITransformer>();
+            TextWriter mockTextWriter = mocks.StrictMock<TextWriter>();
+            ITransformer mockTransformer = mocks.StrictMock<ITransformer>();
 
             int dummyNumber = 12;
             string transformedNumber = "Transformed";
@@ -68,6 +60,5 @@ namespace FizzBuzz.Core.Test
 
             mocks.VerifyAll();
         }
-
     }
 }
